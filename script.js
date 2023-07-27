@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
     "purple"
   ];
 
-  const startButton = document.getElementById("startButton");
+  const startButton = document.getElementById("newGame");
   gameContainer.style.display = "none"; // hide the game before the button is clicked
   let flipped = [] // which cards are currently flipped up face up
 
   // here is a helper function to shuffle an array
   // it returns the same array with values shuffled
-  // it is based on an algorithm called Fisher Yates if you want ot research more
+  // it is based on an algorithm called Fisher Yates if you want to research more
   function shuffle(array) {
     let counter = array.length;
 
@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     return array;
   }
-
-  let shuffledColors = shuffle(COLORS);
 
   // this function loops over the array of colors
   // it creates a new div and gives it a class with the value of the color
@@ -91,14 +89,19 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
+
   function startGame(){
-    
-  }
-
-  function endGame(){
-
+    console.log("works");
+    let shuffledColors = shuffle(COLORS);
+    gameContainer.innerHTML = "";
+    createDivsForColors(shuffledColors);
+    gameContainer.style.display = "inline-block";
   }
 
   // when the DOM loads
-  startButton.addEventListener("click", startGame()); // add start button listener
+  document.addEventListener("click", function(e){
+    if (e.target.id === "newGame"){
+      startGame();
+    }
+  }); // add start button listener
 });
